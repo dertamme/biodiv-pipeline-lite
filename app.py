@@ -1,7 +1,7 @@
 # Was muss ich einstellen?
 # - input/ = Berichte ablegen
 # - matching/ = "sample_summary.xlsx" ablegen (bereits vorhanden). Muss die Metadaten (Unternehmensnamen, Branche, Land etc) ethalten. 
-# - .env = GOOGLE_API_KEY="ABCDEFGHIJKLMNOPXYZ" muss gesetzt sein.
+# - .env = GOOGLE_API_KEY="ABCDEFGHIJKLMNOPXYZ" muss gesetzt sein. Mit einem korrekten Key.
 # - functions/suchbegriffe.json = Enthält die Suchbegriffe. Kann erweitert werden.  
 # - config.py = Einstellen der Gemini Model Version
 
