@@ -4,18 +4,20 @@
 # - .env = GOOGLE_API_KEY="ABCDEFGHIJKLMNOPXYZ" muss gesetzt sein. Mit einem korrekten Key.
 # - functions/suchbegriffe.json = Enthält die Suchbegriffe. Kann erweitert werden.  
 # - config.py = Einstellen der Gemini Model Version
+# - matching/aussagen = Hier müssen die Ergebnisse aus top_down_klassifizierungs_report.xlsx (siehe unten) hinein kopiert werden. Name=JAHR.xlsx (z.b. 2019.xlsx). Benötigt, um zu vergleichen ob Aussagen in vergangenen Jahren bereits getätigt wurden.
 
 
 # Wo sind die Ergebnisse?
 # - text_passages/analyse/AI/JSON_Reports = Anteile pro Unternehmen an Kategrien, sowie Metadaten des Unternehmens
 # - text_passages/analyse/AI/Screenshots = Markierte Textstellen in den Berichten als PNG
-# - text_passages/analyse/AI/Top_Down_Analyse/top_down_klassifizierungs_reort = Alle Aussagen mit Kategorie, Status (planned/done) etc.
+# - text_passages/analyse/AI/Top_Down_Analyse/top_down_klassifizierungs_report.xlsx = Alle Aussagen mit Kategorie, Status (planned/done) etc.
+# ---> Die Ergebisse der aus top_down_klassifizierungs_report.xlsx müssen nach matching/aussagen kopiert werden (umbenennen auf JAHR.xlsx), damit verglichen werden kann, ob aussagen bereits in früheren Jahren getätigt wurden.
  
 
 import os
 from dotenv import load_dotenv
 from functions.setup import nltlk_setup
-from config import input_ordner, text_passages_ordner, relevant_text_passages_ordner, analyse_ordner, gemini_model_version
+from config import input_ordner, text_passages_ordner, relevant_text_passages_ordner, analyse_ordner, aussagen_alle_jahre_ornder, gemini_model_version
 from functions.analyze_measures import analyze_measures_and_smartness
 from functions.AI_clustering import fuehre_top_down_klassifizierung_durch
 from functions.deduplicate_statements import deduplicate_globally_per_file
@@ -42,6 +44,9 @@ def main():
           
     if not os.path.isdir(analyse_ordner):
         os.makedirs(analyse_ordner, exist_ok=True)
+
+    if not os.path.isdir(aussagen_alle_jahre_ornder):
+        os.makedirs(aussagen_alle_jahre_ornder, exist_ok=True)        
     
  
             
